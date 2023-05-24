@@ -1,14 +1,15 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 
 const dbConnection = async () => {
     try {
-        mongoose.connect( process.env.DB_CONNECTION, {
+        mongoose.connect(process.env.DB_CONNECTION, {
             autoIndex: true
         })
-        console.log("MongoDB is Online.")
-    } catch ( error ) {
+
+        console.log('MongoDB is Online.')
+    } catch (error) {
         console.log(error)
-        throw new Error("MongoDB is Crashed.")
+        throw new Error('Error al conectar MongoDB.')
     }
 }
-module.exports = {dbConnection}
+module.exports = { dbConnection }

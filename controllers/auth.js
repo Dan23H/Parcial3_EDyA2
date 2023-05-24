@@ -1,29 +1,32 @@
-const express = require("express")
-const Pedido = require("../models/Pedidos")
-const Coordenada = require("../models/Coordenadas")
+const express = require('express')
+const Pedido = require('../models/PedidoScheme')
+const Coordenada = require('../models/CoordenadaScheme')
 
-const registrarPedido = async (req, res = express.request) => {
-    const {id, fecha} = req.body
-    console.log(id, fecha)
+const registrarPedido = async (req, res = express.response) => {
+    const { id, fecha } = req.body
     try {
         
-        let pedido = await Pedido.findOne({id: id}) 
+        let pedido = await Pedido.findOne({id:id})
         if (pedido) {
             return res.status(400).json({
                 ok: false,
-                msg: "Ese pedido ya existe."
+                msg: 'Ese pedido ya existe',
             })
         }
-
+        
         pedido = new Pedido(req.body)
         await pedido.save()
 
-        res.status(200).json({
-            ok: true,
-            pedido
-        })
+        return (
+            res.status(200).json({
+                ok: true,
+                pedido,
+            })
+        )
+
     } catch (error) {
-        return res.status(500).json({
+        console.log(error)
+        res.status(500).json({
             ok: false,
             error
         })
@@ -50,7 +53,7 @@ const registrarCoordenada = async (req, res = express.request) => {
             coordenada
         })
     } catch (error) {
-        return res.statusCode(500).json({
+        return res.status(500).json({
             ok: false,
             error
         })
