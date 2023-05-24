@@ -6,7 +6,7 @@ const dbConnection = async () => {
             autoIndex: true
         })
 
-        console.log('MongoDB is Online.')
+        console.log('DB Online.')
     } catch (error) {
         console.log(error)
         throw new Error('Error al conectar MongoDB.')

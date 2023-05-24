@@ -3,27 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Dan23H/Parcial3_EDyA2.git"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Dan23H/Parcial3_EDyA2/issues"
-  },
-  "homepage": "https://github.com/Dan23H/Parcial3_EDyA2#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
-    "mongoose": "^7.2.0",
-    "nodemon": "^2.0.22"
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.5",
+    "socket.io": "^4.6.1"
   }
 }

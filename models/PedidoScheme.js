@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const PedidoSchema = Schema({
+const PedidoScheme = Schema({
     id: {
         type: Number,
         require: true,
@@ -19,11 +19,11 @@ const PedidoSchema = Schema({
     }
 })
 
-PedidoSchema.virtual('coordenadas',{
+PedidoScheme.virtual('Coordenadas',{
     ref: 'Coordenada',
-    localField: 'pedido_id',
-    foreignField: 'id',
+    localField: 'id',
+    foreignField: 'pedido_id',
     justOne: false,
 })
 
-module.exports = model('Pedido', PedidoSchema)
+module.exports = model('Pedido', PedidoScheme)

@@ -1,17 +1,18 @@
-const { Schema, model } = require('mongoose')
+const {Schema, model} = require('mongoose')
 
-const CoordenadaSchema = Schema({
+const CoordenadaScheme = Schema({
     X: {
         type: Number,
-        require: true
+        required: true
     },
     Y: {
         type: Number,
-        require: true
+        required: true
     },
     pedido_id: {
         type: Number,
-        require: true
+        required: true,
+        ref: 'Pedido'
     }
 },{
     toJSON: {
@@ -22,4 +23,10 @@ const CoordenadaSchema = Schema({
     }
 })
 
-module.exports = model('Coordenada', CoordenadaSchema)
+CoordenadaScheme.method('toJSON',function() {
+    const {__v,_id, ...object} = this.toObject()
+    object.id = _id
+    return object
+})
+
+module.exports = model('Coordenada', CoordenadaScheme)

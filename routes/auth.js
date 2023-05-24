@@ -1,20 +1,23 @@
 const express = require('express')
 const router = express.Router()
 const { check } = require('express-validator')
-const { registrarPedido, registrarCoordenada, verPedido, verCoordenada } = require('../controllers/auth')
+const { nuevoPedido, nuevaCoordenada } = require('../controllers/auth')
 const { validarCampos } = require('../middlewares/validar-campos')
 
-router.post("/newPedido", registrarPedido)
-
-router.post('/newCoord', [
-    check('id', 'El ID debe ser numérico.').not().isEmpty(),
-    check('x', 'El valor de X debe ser numérico.').not().isEmpty(),
-    check('y', 'El valor de Y debe ser numérico.').not().isEmpty(),
+router.post('/newPedido', [
+    check('id', 'El ID es obligatorio').not().isEmpty(),
+    check('fecha', 'La fecha es obligatoria').not().isEmpty(),
     validarCampos
-], 
-registrarCoordenada)
+], nuevoPedido)
 
-router.get("/pdd", verPedido)
-router.get("/crdnd", verCoordenada)
+router.post(
+    '/newCoordenada',
+    [
+        check('X', 'El valor de X es obligatorio').not().isEmpty(),
+        check('Y', 'El valor de Y es obligatorio').not().isEmpty(),
+        check('pedido_id', "El pedido_id es obligatorio").not().isEmpty(),
+        validarCampos
+    ],
+    nuevaCoordenada)
 
 module.exports = router
