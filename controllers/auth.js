@@ -3,18 +3,18 @@ const Pedido = require('../models/PedidoScheme')
 const Coordenada = require('../models/CoordenadaScheme')
 
 const registrarPedido = async (req, res = express.response) => {
-    const { id, fecha } = req.body
+    console.log(req.body)
     try {
         
-        let pedido = await Pedido.findOne({id:id})
-        if (pedido) {
-            return res.status(400).json({
-                ok: false,
-                msg: 'Ese pedido ya existe',
-            })
-        }
+        // let pedido = await Pedido.findOne({id:id})
+        // if (pedido) {
+        //     return res.status(400).json({
+        //         ok: false,
+        //         msg: 'Ese pedido ya existe',
+        //     })
+        // }
         
-        pedido = new Pedido(req.body)
+        const pedido = new Pedido(req.body)
         await pedido.save()
 
         return (
